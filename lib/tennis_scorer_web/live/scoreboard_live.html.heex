@@ -1,1 +1,6 @@
-
+<h1 class="text-2xl">Tennis Scorer</h1>
+<.simple_form for={@form} phx-change="change" phx-submit="ignore">
+  <.button id="point-to-player-one" phx-click="point-to-player-one">Player one</.button>
+  <.button id="point-to-player-two" phx-click="point-to-player-two">Player two</.button>
+</.simple_form>
+<.score score={@score} />
