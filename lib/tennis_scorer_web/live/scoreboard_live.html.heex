@@ -1,8 +1,12 @@
 <div class="text-center">
   <.simple_form for={@form} phx-change="change" phx-submit="ignore">
     <h1 class="text-2xl">Tennis Scorer</h1>
-    <.button id="point-to-player-one" phx-click="point-to-player-one">Player one</.button>
-    <.button id="point-to-player-two" phx-click="point-to-player-two">Player two</.button>
+    <div class="flex justify-center space-x-4">
+      <.input field={@form[:player_one_name]} class="" />
+      <.button id="point_to_player_one" phx-click="point-to-player-one">Score</.button>
+      <.button id="point_to_player_two" phx-click="point-to-player-two">Score</.button>
+      <.input field={@form[:player_two_name]} />
+    </div>
   </.simple_form>
-  <.score score={@score} />
+  <.score score={@score} player_one_name={@player_one_name} player_two_name={@player_two_name} />
 </div>
