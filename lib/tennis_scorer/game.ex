@@ -4,28 +4,27 @@ defmodule TennisScorer.Game do
 
   def score(game) do
     cond do
-      game.player_one_score > 3 and game.player_one_score - game.player_two_score > 1 ->
-        game(game.player_one_name)
-
-      game.player_two_score > 3 and game.player_two_score - game.player_one_score > 1 ->
-        game(game.player_two_name)
-
-      game.player_one_score > 3 and game.player_one_score > game.player_two_score ->
-        advantage(game.player_one_name)
-
-      game.player_two_score > 3 and game.player_two_score > game.player_one_score ->
-        advantage(game.player_two_name)
-
-      game.player_one_score > 2 and game.player_one_score == game.player_two_score ->
-        deuce()
-
-      game.player_one_score == game.player_two_score ->
-        tied(game.player_one_score)
-
-      true ->
-        normal_score(game.player_one_score, game.player_two_score)
+      player_one_has_won?(game) -> game(game.player_one_name)
+      player_two_has_won?(game) -> game(game.player_two_name)
+      advantage_player_one?(game) -> advantage(game.player_one_name)
+      advantage_player_two?(game) -> advantage(game.player_two_name)
+      deuce?(game) -> deuce()
+      tied?(game) -> tied(game.player_one_score)
+      true -> normal_score(game.player_one_score, game.player_two_score)
     end
   end
+
+  defp player_one_has_won?(game), do: game.player_one_score > 3 and game.player_one_score - game.player_two_score > 1
+
+  defp player_two_has_won?(game), do: game.player_two_score > 3 and game.player_two_score - game.player_one_score > 1
+
+  defp advantage_player_one?(game), do: game.player_one_score > 3 and game.player_one_score > game.player_two_score
+
+  defp advantage_player_two?(game), do: game.player_two_score > 3 and game.player_two_score > game.player_one_score
+
+  defp deuce?(game), do: game.player_one_score > 2 and game.player_one_score == game.player_two_score
+
+  defp tied?(game), do: game.player_one_score == game.player_two_score
 
   defp game(name), do: "Game #{name}"
 
