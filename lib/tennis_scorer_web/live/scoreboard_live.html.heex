@@ -9,6 +9,6 @@
     </div>
   </.simple_form>
   <div class="mt-6 text-xl" id="score">
-    <%= @game.player_one_name %> <%= @game.player_one_score %> – <%= @game.player_two_score %> <%= @game.player_two_name %>
+    <%= Game.score(@game) %>
   </div>
 </div>
