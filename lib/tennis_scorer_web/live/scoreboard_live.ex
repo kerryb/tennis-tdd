@@ -50,14 +50,4 @@ defmodule TennisScorerWeb.ScoreboardLive do
   defp change_name(socket, field, name) do
     {:noreply, socket |> update(:game, &Map.put(&1, field, name)) |> build_form()}
   end
-
-  attr :game, :map, required: true
-
-  def score(assigns) do
-    ~H"""
-    <div class="mt-6 text-xl" id="score">
-      <%= @game.player_one_name %> <%= @game.player_one_score %> – <%= @game.player_two_score %> <%= @game.player_two_name %>
-    </div>
-    """
-  end
 end
