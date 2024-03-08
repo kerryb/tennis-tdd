@@ -55,7 +55,7 @@ defmodule TennisScorerWeb.ScoreboardLive do
 
   def score(assigns) do
     ~H"""
-    <div class="mt-4 text-xl" id="score">
+    <div class="mt-6 text-xl" id="score">
       <%= @game.player_one_name %> <%= @game.player_one_score %> – <%= @game.player_two_score %> <%= @game.player_two_name %>
     </div>
     """
