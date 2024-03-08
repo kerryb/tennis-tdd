@@ -24,7 +24,7 @@ defmodule TennisScorerWeb.ScoreboardLive do
 
   def score(assigns) do
     ~H"""
-    <div id="score"><%= @score.player_one %> – <%= @score.player_two %></div>
+    <div class="mt-4 text-xl" id="score"><%= @score.player_one %> – <%= @score.player_two %></div>
     """
   end
 end
