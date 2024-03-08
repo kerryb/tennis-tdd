@@ -16,7 +16,7 @@ defmodule TennisScorer.Game do
       game.player_two_score > 3 and game.player_two_score > game.player_one_score ->
         advantage(game.player_two_name)
 
-      game.player_one_score > 3 ->
+      game.player_one_score > 2 and game.player_one_score == game.player_two_score ->
         deuce()
 
       game.player_one_score == game.player_two_score ->
@@ -28,6 +28,7 @@ defmodule TennisScorer.Game do
   end
 
   defp game(name), do: "Game #{name}"
+
   defp advantage(name), do: "Advantage #{name}"
 
   defp deuce, do: "Deuce"

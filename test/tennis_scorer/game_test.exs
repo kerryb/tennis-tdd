@@ -59,8 +59,8 @@ defmodule TennisScorer.GameTest do
       assert Game.score(game) == "Advantage Bob"
     end
 
-    test "returns ‘Deuce’ when players are tied on > 3 points" do
-      game = %Game{player_one_name: "Alice", player_two_name: "Bob", player_one_score: 6, player_two_score: 6}
+    test "returns ‘Deuce’ when players are tied on > 2 points" do
+      game = %Game{player_one_name: "Alice", player_two_name: "Bob", player_one_score: 3, player_two_score: 3}
       assert Game.score(game) == "Deuce"
     end
 
