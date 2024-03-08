@@ -15,9 +15,9 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
 
     test "tracks the score as points are scored", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
-      point_to_player_one(view)
+      award_point_to_player_one(view)
       assert_score(view, "1 – 0")
-      point_to_player_two(view)
+      award_point_to_player_two(view)
       assert_score(view, "1 – 1")
     end
   end
@@ -30,11 +30,11 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
     view |> element("form") |> render_change(%{"_target" => ["player_two_name"], "player_two_name" => name})
   end
 
-  defp point_to_player_one(view) do
+  defp award_point_to_player_one(view) do
     view |> element("#point_to_player_one") |> render_click()
   end
 
-  defp point_to_player_two(view) do
+  defp award_point_to_player_two(view) do
     view |> element("#point_to_player_two") |> render_click()
   end
 
