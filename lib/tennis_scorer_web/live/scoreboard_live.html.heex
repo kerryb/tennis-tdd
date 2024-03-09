@@ -12,6 +12,6 @@
     </.simple_form>
   </div>
   <div class="py-3 px rounded-b-lg bg-black text-4xl" id="score">
-    <%= @game.player_one_name %> <%= @game.player_one_score %> – <%= @game.player_two_score %> <%= @game.player_two_name %>
+    <%= Game.score(@game) %>
   </div>
 </div>

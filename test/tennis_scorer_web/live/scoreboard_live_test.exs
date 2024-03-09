@@ -18,9 +18,9 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
     test "tracks the score as points are scored", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
       award_point_to_player_one(view)
-      assert_score(view, "1 – 0")
+      assert_score(view, "15 – 0")
       award_point_to_player_two(view)
-      assert_score(view, "1 – 1")
+      assert_score(view, "15 – 15")
     end
 
     test "allows the scores to be reset", %{conn: conn} do
