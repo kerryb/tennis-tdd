@@ -1,0 +1,11 @@
+{
+  "skip_files": [
+    "application.ex",
+    "mailer.ex",
+    "tennis_scorer_web.ex",
+    "core_components.ex",
+    "router.ex",
+    "telemetry.ex",
+    "test/support"
+  ]
+}
