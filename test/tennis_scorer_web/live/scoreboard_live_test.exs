@@ -20,6 +20,11 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
       award_point_to_player_two(view)
       assert_score(view, "1 – 1")
     end
+
+    test "ignores form submit events", %{conn: conn} do
+      {:ok, view, _html} = live(conn, "/")
+      view |> element("form") |> render_submit(%{})
+    end
   end
 
   defp change_player_one_name(view, name) do
