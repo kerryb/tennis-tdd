@@ -21,13 +21,13 @@ defmodule TennisScorer.Game do
       game.player_one_score > 3 and game.player_one_score - game.player_two_score > 1 ->
         "Game #{game.player_one_name}"
 
-      game.player_one_score > 3 ->
-        "Advantage #{game.player_one_name}"
-
       game.player_two_score > 3 and game.player_two_score - game.player_one_score > 1 ->
         "Game #{game.player_two_name}"
 
-      game.player_two_score > 3 ->
+      game.player_one_score > 3 and game.player_one_score > game.player_two_score ->
+        "Advantage #{game.player_one_name}"
+
+      game.player_two_score > 3 and game.player_two_score > game.player_one_score ->
         "Advantage #{game.player_two_name}"
 
       true ->
