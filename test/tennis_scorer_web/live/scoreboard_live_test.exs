@@ -21,6 +21,14 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
       assert_score(view, "1 – 1")
     end
 
+    test "allows the scores to be reset", %{conn: conn} do
+      {:ok, view, _html} = live(conn, "/")
+      award_point_to_player_one(view)
+      award_point_to_player_two(view)
+      reset_scores(view)
+      assert_score(view, "0 – 0")
+    end
+
     test "ignores form submit events", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
       view |> element("form") |> render_submit(%{})
@@ -41,6 +49,10 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
 
   defp award_point_to_player_two(view) do
     view |> element("#point_to_player_two") |> render_click()
+  end
+
+  defp reset_scores(view) do
+    view |> element("#reset_scores") |> render_click()
   end
 
   defp assert_score(view, score) do

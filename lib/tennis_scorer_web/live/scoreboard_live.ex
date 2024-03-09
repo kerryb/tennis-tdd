@@ -23,6 +23,10 @@ defmodule TennisScorerWeb.ScoreboardLive do
     {:noreply, update(socket, :game, &award_point_to_player_two/1)}
   end
 
+  def handle_event("reset-scores", _unsigned_params, socket) do
+    {:noreply, update(socket, :game, &reset_scores/1)}
+  end
+
   def handle_event("change", %{"_target" => ["player_one_name"], "player_one_name" => name}, socket) do
     {:noreply, socket |> update(:game, &change_player_one_name(&1, name)) |> build_form()}
   end
@@ -46,6 +50,8 @@ defmodule TennisScorerWeb.ScoreboardLive do
   defp award_point_to_player_one(game), do: Map.update!(game, :player_one_score, &(&1 + 1))
 
   defp award_point_to_player_two(game), do: Map.update!(game, :player_two_score, &(&1 + 1))
+
+  defp reset_scores(game), do: %{game | player_one_score: 0, player_two_score: 0}
 
   defp change_player_one_name(game, name), do: Map.put(game, :player_one_name, name)
 

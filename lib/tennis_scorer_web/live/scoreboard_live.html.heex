@@ -4,11 +4,12 @@
     <div class="flex justify-center space-x-4">
       <.input field={@form[:player_one_name]} class="" />
       <.button id="point_to_player_one" phx-click="point-to-player-one">Score</.button>
+      <.button id="reset_scores" phx-click="reset-scores">Reset</.button>
       <.button id="point_to_player_two" phx-click="point-to-player-two">Score</.button>
       <.input field={@form[:player_two_name]} />
     </div>
   </.simple_form>
-  <div class="mt-6 text-xl" id="score">
+  <div class="mt-6 text-4xl" id="score">
     <%= @game.player_one_name %> <%= @game.player_one_score %> – <%= @game.player_two_score %> <%= @game.player_two_name %>
   </div>
 </div>
