@@ -16,16 +16,17 @@ defmodule TennisScorer.Game do
 
   def score(game) do
     cond do
-      game.player_one_score > 3 and game.player_one_score > game.player_two_score ->
-        "Advantage #{game.player_one_name}"
-
-      game.player_two_score > 3 and game.player_two_score > game.player_one_score ->
-        "Advantage #{game.player_two_name}"
-
-      true ->
-        "#{value(game.player_one_score)} – #{value(game.player_two_score)}"
+      advantage?(game.player_one_score, game.player_two_score) -> advantage(game.player_one_name)
+      advantage?(game.player_two_score, game.player_one_score) -> advantage(game.player_two_name)
+      true -> normal_score(game)
     end
   end
+
+  defp advantage?(score_1, score_2), do: score_1 > 3 and score_1 > score_2
+
+  defp advantage(name), do: "Advantage #{name}"
+
+  defp normal_score(game), do: "#{value(game.player_one_score)} – #{value(game.player_two_score)}"
 
   defp value(0), do: 0
   defp value(1), do: 15
