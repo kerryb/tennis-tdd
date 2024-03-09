@@ -16,19 +16,19 @@ defmodule TennisScorerWeb.ScoreboardLive do
 
   @impl LiveView
   def handle_event("point-to-player-one", _unsigned_params, socket) do
-    increment_score(socket, :player_one_score)
+    {:noreply, update(socket, :game, &award_point_to_player_one/1)}
   end
 
   def handle_event("point-to-player-two", _unsigned_params, socket) do
-    increment_score(socket, :player_two_score)
+    {:noreply, update(socket, :game, &award_point_to_player_two/1)}
   end
 
   def handle_event("change", %{"_target" => ["player_one_name"], "player_one_name" => name}, socket) do
-    change_name(socket, :player_one_name, name)
+    {:noreply, update(socket, :game, &change_player_one_name(&1, name))}
   end
 
   def handle_event("change", %{"_target" => ["player_two_name"], "player_two_name" => name}, socket) do
-    change_name(socket, :player_two_name, name)
+    {:noreply, update(socket, :game, &change_player_two_name(&1, name))}
   end
 
   def handle_event(_event, _unsigned_params, socket), do: {:noreply, socket}
@@ -43,11 +43,11 @@ defmodule TennisScorerWeb.ScoreboardLive do
     )
   end
 
-  defp increment_score(socket, field) do
-    {:noreply, update(socket, :game, fn game -> Map.update!(game, field, &(&1 + 1)) end)}
-  end
+  defp award_point_to_player_one(game), do: Map.update!(game, :player_one_score, &(&1 + 1))
 
-  defp change_name(socket, field, name) do
-    {:noreply, socket |> update(:game, &Map.put(&1, field, name)) |> build_form()}
-  end
+  defp award_point_to_player_two(game), do: Map.update!(game, :player_two_score, &(&1 + 1))
+
+  defp change_player_one_name(game, name), do: Map.put(game, :player_one_name, name)
+
+  defp change_player_two_name(game, name), do: Map.put(game, :player_two_name, name)
 end
