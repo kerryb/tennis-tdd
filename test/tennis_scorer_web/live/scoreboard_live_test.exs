@@ -9,16 +9,18 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
     test "allows player names to be set", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
       change_player_one_name(view, "Alice")
+      assert_player_one_name(view, "Alice")
+
       change_player_two_name(view, "Bob")
-      assert_score(view, "Alice 0 – 0 Bob")
+      assert_player_two_name(view, "Bob")
     end
 
     test "tracks the score as points are scored", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
       award_point_to_player_one(view)
-      assert_score(view, "1 – 0")
+      assert_score(view, "15 – 0")
       award_point_to_player_two(view)
-      assert_score(view, "1 – 1")
+      assert_score(view, "15 – 15")
     end
 
     test "allows the scores to be reset", %{conn: conn} do
@@ -53,6 +55,14 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
 
   defp reset_scores(view) do
     view |> element("#reset_scores") |> render_click()
+  end
+
+  defp assert_player_one_name(view, name) do
+    assert view |> element("#player_one_name[value='#{name}']") |> has_element?()
+  end
+
+  defp assert_player_two_name(view, name) do
+    assert view |> element("#player_two_name[value='#{name}']") |> has_element?()
   end
 
   defp assert_score(view, score) do
