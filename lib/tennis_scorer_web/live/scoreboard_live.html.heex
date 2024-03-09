@@ -1,17 +1,19 @@
 <div class="h-screen text-center">
-  <div class="pb-2 rounded-t-lg border-2 border-b-0 border-purple-700">
-    <h1 class="mt-0 text-2xl py-2 rounded-t-lg bg-purple-700">Tennis Scorer</h1>
+  <div class="pb-2 rounded-t-lg border-2 border-b-0 border-purple-700 bg-green-700">
+    <h1 class="mt-0 text-2xl py-2 rounded-t-lg bg-purple-700 text-white font-bold">
+      Tennis Scorer
+    </h1>
     <.simple_form for={@form} phx-change="change" phx-submit="ignore" class="px-2">
       <div class="flex justify-center space-x-4 py-2">
-        <.input field={@form[:player_one_name]} class="" />
+        <.input field={@form[:player_one_name]} onClick="this.select()" />
         <.button id="point_to_player_one" phx-click="point-to-player-one">Score</.button>
         <.button id="reset_scores" phx-click="reset-scores">Reset</.button>
         <.button id="point_to_player_two" phx-click="point-to-player-two">Score</.button>
-        <.input field={@form[:player_two_name]} />
+        <.input field={@form[:player_two_name]} onClick="this.select()" />
       </div>
     </.simple_form>
   </div>
-  <div class="py-3 px rounded-b-lg bg-black text-4xl" id="score">
+  <div class="py-3 px rounded-b-lg bg-black text-4xl font-bold" id="score">
     <%= @game.player_one_name %> <%= @game.player_one_score %> – <%= @game.player_two_score %> <%= @game.player_two_name %>
   </div>
 </div>
