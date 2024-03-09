@@ -48,5 +48,20 @@ defmodule TennisScorer.GameTest do
       game = %Game{player_two_name: "Bob", player_one_score: 4, player_two_score: 5}
       assert Game.score(game) == "Advantage Bob"
     end
+
+    test "shows game if player one is winning by more than a point and over 3" do
+      game = %Game{player_one_name: "Alice", player_one_score: 6, player_two_score: 4}
+      assert Game.score(game) == "Game Alice"
+    end
+
+    test "shows game if player two is winning by more than a point and over 3" do
+      game = %Game{player_two_name: "Bob", player_one_score: 4, player_two_score: 6}
+      assert Game.score(game) == "Game Bob"
+    end
+
+    test "shows deuce if scores are tied and over 3" do
+      game = %Game{player_one_score: 4, player_two_score: 4}
+      assert Game.score(game) == "Deuce"
+    end
   end
 end
