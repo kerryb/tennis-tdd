@@ -18,25 +18,35 @@ defmodule TennisScorer.Game do
 
   def score(game) do
     cond do
-      game.player_one_score > 3 and game.player_one_score - game.player_two_score > 1 ->
+      game_player_one?(game) ->
         "Game #{game.player_one_name}"
 
-      game.player_two_score > 3 and game.player_two_score - game.player_one_score > 1 ->
+      game_player_two?(game) ->
         "Game #{game.player_two_name}"
 
-      game.player_one_score > 3 and game.player_one_score > game.player_two_score ->
+      advantage_player_one?(game) ->
         "Advantage #{game.player_one_name}"
 
-      game.player_two_score > 3 and game.player_two_score > game.player_one_score ->
+      advantage_player_two?(game) ->
         "Advantage #{game.player_two_name}"
 
-      game.player_one_score > 3 and game.player_one_score == game.player_two_score ->
+      deuce?(game) ->
         "Deuce"
 
       true ->
         "#{score_value(game.player_one_score)} – #{score_value(game.player_two_score)}"
     end
   end
+
+  defp game_player_one?(game), do: game.player_one_score > 3 and game.player_one_score - game.player_two_score > 1
+
+  defp game_player_two?(game), do: game.player_two_score > 3 and game.player_two_score - game.player_one_score > 1
+
+  defp advantage_player_one?(game), do: game.player_one_score > 3 and game.player_one_score > game.player_two_score
+
+  defp advantage_player_two?(game), do: game.player_two_score > 3 and game.player_two_score > game.player_one_score
+
+  defp deuce?(game), do: game.player_one_score > 3 and game.player_one_score == game.player_two_score
 
   defp score_value(0), do: 0
   defp score_value(1), do: 15
