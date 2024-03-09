@@ -30,6 +30,9 @@ defmodule TennisScorer.Game do
       game.player_two_score > 3 and game.player_two_score > game.player_one_score ->
         "Advantage #{game.player_two_name}"
 
+      game.player_one_score > 3 and game.player_one_score == game.player_two_score ->
+        "Deuce"
+
       true ->
         "#{score_value(game.player_one_score)} – #{score_value(game.player_two_score)}"
     end

@@ -87,32 +87,37 @@ defmodule TennisScorer.GameTest do
       assert Game.score(game) == "40 – 30"
     end
 
-    test "returns ‘Advantage <player one> when player one is 4 – 3 ahead" do
+    test "returns ‘Advantage <player one>’ when player one is 4 – 3 ahead" do
       game = %Game{player_one_name: "Alice", player_one_score: 4, player_two_score: 3}
       assert Game.score(game) == "Advantage Alice"
     end
 
-    test "returns ‘Advantage <player one> when player one is a point ahead with more than 4 points" do
+    test "returns ‘Advantage <player one>’ when player one is a point ahead with more than 4 points" do
       game = %Game{player_one_name: "Alice", player_one_score: 6, player_two_score: 5}
       assert Game.score(game) == "Advantage Alice"
     end
 
-    test "returns ‘Advantage <player two> when player two is 4 – 3 ahead" do
+    test "returns ‘Advantage <player two>’ when player two is 4 – 3 ahead" do
       game = %Game{player_two_name: "Bob", player_one_score: 3, player_two_score: 4}
       assert Game.score(game) == "Advantage Bob"
     end
 
-    test "returns ‘Advantage <player two> when player two is a point ahead with more than 4 points" do
+    test "returns ‘Advantage <player two>’ when player two is a point ahead with more than 4 points" do
       game = %Game{player_two_name: "Bob", player_one_score: 5, player_two_score: 6}
       assert Game.score(game) == "Advantage Bob"
     end
 
-    test "returns ‘Game <player one> when player one is more than a point ahead with more than 3 points" do
+    test "returns ‘Deuce’ when Advantage <player two> yers are tied on more than 3 points" do
+      game = %Game{player_one_score: 4, player_two_score: 4}
+      assert Game.score(game) == "Deuce"
+    end
+
+    test "returns ‘Game <player one>’ when player one is more than a point ahead with more than 3 points" do
       game = %Game{player_one_name: "Alice", player_one_score: 5, player_two_score: 3}
       assert Game.score(game) == "Game Alice"
     end
 
-    test "returns ‘Game <player two> when player two is more than a point ahead with more than 3 points" do
+    test "returns ‘Game <player two>’ when player two is more than a point ahead with more than 3 points" do
       game = %Game{player_two_name: "Bob", player_one_score: 3, player_two_score: 5}
       assert Game.score(game) == "Game Bob"
     end
