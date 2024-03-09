@@ -13,4 +13,22 @@ defmodule TennisScorer.Game do
   def change_player_one_name(game, name), do: Map.put(game, :player_one_name, name)
 
   def change_player_two_name(game, name), do: Map.put(game, :player_two_name, name)
+
+  def score(game) do
+    cond do
+      game.player_one_score > 3 and game.player_one_score > game.player_two_score ->
+        "Advantage #{game.player_one_name}"
+
+      game.player_two_score > 3 and game.player_two_score > game.player_one_score ->
+        "Advantage #{game.player_two_name}"
+
+      true ->
+        "#{value(game.player_one_score)} – #{value(game.player_two_score)}"
+    end
+  end
+
+  defp value(0), do: 0
+  defp value(1), do: 15
+  defp value(2), do: 30
+  defp value(3), do: 40
 end
