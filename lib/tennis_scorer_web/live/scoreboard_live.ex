@@ -24,11 +24,11 @@ defmodule TennisScorerWeb.ScoreboardLive do
   end
 
   def handle_event("change", %{"_target" => ["player_one_name"], "player_one_name" => name}, socket) do
-    {:noreply, update(socket, :game, &change_player_one_name(&1, name))}
+    {:noreply, socket |> update(:game, &change_player_one_name(&1, name)) |> build_form()}
   end
 
   def handle_event("change", %{"_target" => ["player_two_name"], "player_two_name" => name}, socket) do
-    {:noreply, update(socket, :game, &change_player_two_name(&1, name))}
+    {:noreply, socket |> update(:game, &change_player_two_name(&1, name)) |> build_form()}
   end
 
   def handle_event(_event, _unsigned_params, socket), do: {:noreply, socket}
