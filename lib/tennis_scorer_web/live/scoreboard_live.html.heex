@@ -5,15 +5,15 @@
   <div class="pb-2 bg-green-700">
     <.simple_form for={@form} phx-change="change" phx-submit="ignore" class="px-2">
       <div class="flex justify-center space-x-4 pt-4 pb-2">
-        <.input field={@form[:player_one_name]} onClick="this.select()" />
-        <.button id="point_to_player_one" phx-click="point-to-player-one">Score</.button>
+        <.input field={@form[:name_1]} onClick="this.select()" />
+        <.button id="point_to_player_1" phx-click="point-to-player-1">Score</.button>
         <.button id="reset_scores" phx-click="reset-scores">Reset</.button>
-        <.button id="point_to_player_two" phx-click="point-to-player-two">Score</.button>
-        <.input field={@form[:player_two_name]} onClick="this.select()" />
+        <.button id="point_to_player_2" phx-click="point-to-player-2">Score</.button>
+        <.input field={@form[:name_2]} onClick="this.select()" />
       </div>
     </.simple_form>
   </div>
   <div class="py-3 px rounded-b-lg bg-black text-4xl font-bold" id="score">
-    <%= @game.player_one_name %> <%= @game.player_one_score %> – <%= @game.player_two_score %> <%= @game.player_two_name %>
+    <%= @game.name_1 %> <%= @game.score_1 %> – <%= @game.score_2 %> <%= @game.name_2 %>
   </div>
 </div>
