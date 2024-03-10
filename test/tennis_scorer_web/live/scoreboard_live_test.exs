@@ -58,14 +58,14 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
   end
 
   defp assert_name_1(view, name) do
-    assert view |> element("#name_1[value='#{name}']") |> has_element?()
+    assert has_element?(view, "#name_1[value='#{name}']")
   end
 
   defp assert_name_2(view, name) do
-    assert view |> element("#name_2[value='#{name}']") |> has_element?()
+    assert has_element?(view, "#name_2[value='#{name}']")
   end
 
   defp assert_score(view, score) do
-    assert view |> element("#score", score) |> has_element?()
+    assert view |> element("#score") |> render() =~ score
   end
 end
