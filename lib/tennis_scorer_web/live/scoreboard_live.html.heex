@@ -5,11 +5,11 @@
   <div class="pb-2 bg-green-700">
     <.simple_form for={@form} phx-change="change" phx-submit="ignore" class="px-2">
       <div class="flex justify-center space-x-4 pt-4 pb-2">
-        <.input field={@form[:name_1]} onClick="this.select()" />
+        <.input field={@form[:name_1]} tabindex="1" onclick="this.select()" />
         <.button id="point_to_player_1" phx-click="point-to-player-1">Score</.button>
         <.button id="reset_scores" phx-click="reset-scores">Reset</.button>
         <.button id="point_to_player_2" phx-click="point-to-player-2">Score</.button>
-        <.input field={@form[:name_2]} onClick="this.select()" />
+        <.input field={@form[:name_2]} tabindex="2" onclick="this.select()" />
       </div>
     </.simple_form>
   </div>
