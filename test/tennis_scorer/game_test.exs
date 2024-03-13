@@ -4,9 +4,34 @@ defmodule TennisScorer.GameTest do
   alias TennisScorer.Game
 
   describe "TennisScorer.score/1" do
-    test "returns the players’ names and scores" do
-      game = %Game{name_1: "Alice", name_2: "Bob", score_1: 1, score_2: 2}
-      assert Game.score(game) == "Alice 1 – 2 Bob"
+    test "scores 0 for 0" do
+      game = %Game{score_1: 0, score_2: 0}
+      assert Game.score(game) == "0 – 0"
+    end
+
+    test "scores 15 for 1" do
+      game = %Game{score_1: 1, score_2: 1}
+      assert Game.score(game) == "15 – 15"
+    end
+
+    test "scores 30 for 2" do
+      game = %Game{score_1: 2, score_2: 2}
+      assert Game.score(game) == "30 – 30"
+    end
+
+    test "scores 40 for 3" do
+      game = %Game{score_1: 3, score_2: 3}
+      assert Game.score(game) == "40 – 40"
+    end
+
+    test "scores each player independently" do
+      game = %Game{score_1: 2, score_2: 3}
+      assert Game.score(game) == "30 – 40"
+    end
+
+    test "scores advantage when player one is 4-3 up" do
+      game = %Game{name_1: "Alice", score_1: 4, score_2: 3}
+      assert Game.score(game) == "Advantage Alice"
     end
   end
 
