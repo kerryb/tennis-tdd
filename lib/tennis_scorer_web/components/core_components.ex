@@ -16,7 +16,7 @@ defmodule TennisScorerWeb.CoreComponents do
   """
   use Phoenix.Component
 
-  import TennisScorerWeb.Gettext
+  use Gettext, backend: TennisScorerWeb.Gettext
 
   alias Phoenix.LiveView.JS
 

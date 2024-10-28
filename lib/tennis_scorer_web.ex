@@ -43,7 +43,7 @@ defmodule TennisScorerWeb do
         layouts: [html: TennisScorerWeb.Layouts]
 
       import Plug.Conn
-      import TennisScorerWeb.Gettext
+      use Gettext, backend: TennisScorerWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -85,7 +85,7 @@ defmodule TennisScorerWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import TennisScorerWeb.CoreComponents
-      import TennisScorerWeb.Gettext
+      use Gettext, backend: TennisScorerWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
