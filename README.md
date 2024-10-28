@@ -18,10 +18,7 @@ Kata](https://sammancoaching.org/kata_descriptions/tennis.html)):
     score should be shown as “Deuce”.
   * Sets and matches are out of scope.
 
-To run the tests:
-
-  * Run `mix setup` to install and setup dependencies
-  * Run the tests using `mix test`.
+To run the tests, just run `make`.
 
 To start your Phoenix server:
 
