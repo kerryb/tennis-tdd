@@ -8,64 +8,48 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
   describe "TennisScorerWeb.ScoreboardLive" do
     test "allows player names to be set", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
-      change_name_1(view, "Alice")
-      assert_name_1(view, "Alice")
+      change_name(view, "player-1", "Alice")
+      assert_name(view, "player-1", "Alice")
 
-      change_name_2(view, "Bob")
-      assert_name_2(view, "Bob")
+      change_name(view, "player-2", "Bob")
+      assert_name(view, "player-2", "Bob")
     end
 
     test "tracks the score as points are scored", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
-      award_point_to_player_1(view)
+      award_point(view, "player-1")
       assert_score(view, "1 – 0")
-      award_point_to_player_2(view)
+      award_point(view, "player-2")
       assert_score(view, "1 – 1")
     end
 
     test "allows the scores to be reset", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
-      award_point_to_player_1(view)
-      award_point_to_player_2(view)
+      award_point(view, "player-1")
+      award_point(view, "player-2")
       reset_scores(view)
       assert_score(view, "0 – 0")
     end
-
-    test "ignores form submit events", %{conn: conn} do
-      {:ok, view, _html} = live(conn, "/")
-      view |> element("form") |> render_submit(%{})
-    end
   end
 
-  defp change_name_1(view, name) do
-    view |> element("form") |> render_change(%{"_target" => ["name_1"], "name_1" => name})
+  defp change_name(view, player, name) do
+    view |> element("a#edit-#{player}") |> render_click()
+    view |> element("##{player} form") |> render_submit(%{"name" => name})
   end
 
-  defp change_name_2(view, name) do
-    view |> element("form") |> render_change(%{"_target" => ["name_2"], "name_2" => name})
-  end
-
-  defp award_point_to_player_1(view) do
-    view |> element("#point_to_player_1") |> render_click()
-  end
-
-  defp award_point_to_player_2(view) do
-    view |> element("#point_to_player_2") |> render_click()
+  defp award_point(view, player) do
+    view |> element("#point-to-#{player}") |> render_click()
   end
 
   defp reset_scores(view) do
-    view |> element("#reset_scores") |> render_click()
+    view |> element("#reset-scores") |> render_click()
   end
 
-  defp assert_name_1(view, name) do
-    assert has_element?(view, "#name_1[value='#{name}']")
-  end
-
-  defp assert_name_2(view, name) do
-    assert has_element?(view, "#name_2[value='#{name}']")
+  defp assert_name(view, player, name) do
+    assert has_element?(view, "##{player}", name)
   end
 
   defp assert_score(view, score) do
-    assert view |> element("#score") |> render() =~ score
+    assert view |> element("#score", score) |> has_element?()
   end
 end
