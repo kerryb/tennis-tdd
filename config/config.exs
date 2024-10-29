@@ -7,29 +7,6 @@
 # General application configuration
 import Config
 
-config :tennis_scorer,
-  generators: [timestamp_type: :utc_datetime]
-
-# Configures the endpoint
-config :tennis_scorer, TennisScorerWeb.Endpoint,
-  url: [host: "localhost"],
-  adapter: Bandit.PhoenixAdapter,
-  render_errors: [
-    formats: [html: TennisScorerWeb.ErrorHTML, json: TennisScorerWeb.ErrorJSON],
-    layout: false
-  ],
-  pubsub_server: TennisScorer.PubSub,
-  live_view: [signing_salt: "mCncs8BV"]
-
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :tennis_scorer, TennisScorer.Mailer, adapter: Swoosh.Adapters.Local
-
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
@@ -50,6 +27,36 @@ config :tailwind,
     ),
     cd: Path.expand("../assets", __DIR__)
   ]
+
+# Configures the mailer
+#
+# By default it uses the "Local" adapter which stores the emails
+# locally. You can see the emails in your browser, at "/dev/mailbox".
+#
+# For production it's recommended to configure a different adapter
+# at the `config/runtime.exs`.
+config :tennis_scorer, TennisScorer.Mailer, adapter: Swoosh.Adapters.Local
+
+# Configures the endpoint
+config :tennis_scorer, TennisScorerWeb.Endpoint,
+  url: [host: "localhost"],
+  adapter: Bandit.PhoenixAdapter,
+  render_errors: [
+    formats: [html: TennisScorerWeb.ErrorHTML, json: TennisScorerWeb.ErrorJSON],
+    layout: false
+  ],
+  pubsub_server: TennisScorer.PubSub,
+  live_view: [signing_salt: "mCncs8BV"]
+
+config :tennis_scorer,
+  # Handle stupid corporate firewall MITM cert
+  generators: [timestamp_type: :utc_datetime]
+
+if path = System.get_env("HEX_CACERTS_PATH") do
+  config :esbuild, cacerts_path: path
+
+  config :tailwind, cacerts_path: path
+end
 
 # Configures Elixir's Logger
 config :logger, :console,
