@@ -18,6 +18,10 @@ Kata](https://sammancoaching.org/kata_descriptions/tennis.html)):
     score should be shown as “Deuce”.
   * Sets and matches are out of scope.
 
+There are tests (in `test/tennis_scorer_web/live/scoreboard_live_test.exs`)
+which fully cover the initial functionality, but they are all run against the
+LiveView, which is also where all the business logic currently resides.
+
 To run the tests, just run `make`.
 
 To start your Phoenix server:
