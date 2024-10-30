@@ -33,7 +33,9 @@ defmodule TennisScorer.GameTest do
   describe "TennisScorer.Game.display_score/1" do
     for {score_1, score_2, display} <- [
           {0, 0, "love all"},
-          {1, 0, "fifteen love"}
+          {1, 0, "fifteen love"},
+          {0, 1, "love fifteen"},
+          {1, 1, "fifteen all"}
         ] do
       @score_1 score_1
       @score_2 score_2
