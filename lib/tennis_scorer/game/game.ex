@@ -12,7 +12,11 @@ defmodule TennisScorer.Game do
 
   def reset_scores(game), do: %{game | score_1: 0, score_2: 0}
 
+  def display_score(%{score_1: score_1, score_2: score_2, name_1: name}) when score_1 > 3 and score_1 - score_2 > 1,
+    do: "game #{name}"
+
   def display_score(%{score_1: score, score_2: score}) when score > 3, do: "deuce"
+
   def display_score(%{score_1: score, name_1: name}) when score > 3, do: "advantage #{name}"
   def display_score(%{score_2: score, name_2: name}) when score > 3, do: "advantage #{name}"
   def display_score(%{score_1: score, score_2: score}), do: "#{label(score)} all"
