@@ -18,4 +18,5 @@ defmodule TennisScorer.Game do
   defp label(0), do: "love"
   defp label(1), do: "fifteen"
   defp label(2), do: "thirty"
+  defp label(3), do: "forty"
 end
