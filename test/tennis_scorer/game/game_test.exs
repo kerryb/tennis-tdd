@@ -40,7 +40,8 @@ defmodule TennisScorer.GameTest do
           {3, 3, "forty all"},
           {4, 4, "deuce"},
           {5, 5, "deuce"},
-          {4, 3, "advantage Alice"}
+          {4, 3, "advantage Alice"},
+          {3, 4, "advantage Bob"}
         ] do
       @score_1 score_1
       @score_2 score_2
