@@ -31,12 +31,17 @@ defmodule TennisScorer.GameTest do
   end
 
   describe "TennisScorer.Game.display_score/1" do
-    test "returns ‘love all’ for 0 – 0" do
-      assert Game.display_score(%Game{score_1: 0, score_2: 0}) == "love all"
-    end
+    for {score_1, score_2, display} <- [
+          {0, 0, "love all"},
+          {1, 0, "fifteen love"}
+        ] do
+      @score_1 score_1
+      @score_2 score_2
+      @display display
 
-    test "returns ‘fifteen love’ for 1 – 0" do
-      assert Game.display_score(%Game{score_1: 1, score_2: 0}) == "fifteen love"
+      test "returns ‘#{@display}’ for #{@score_1} – #{@score_2}" do
+        assert Game.display_score(%Game{score_1: @score_1, score_2: @score_2}) == @display
+      end
     end
   end
 end
