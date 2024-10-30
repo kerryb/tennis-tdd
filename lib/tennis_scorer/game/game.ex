@@ -12,6 +12,7 @@ defmodule TennisScorer.Game do
 
   def reset_scores(game), do: %{game | score_1: 0, score_2: 0}
 
+  def display_score(%{score_1: 4, score_2: 4}), do: "deuce"
   def display_score(%{score_1: score, score_2: score}), do: "#{label(score)} all"
   def display_score(%{score_1: score_1, score_2: score_2}), do: "#{label(score_1)} #{label(score_2)}"
 
