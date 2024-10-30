@@ -12,18 +12,17 @@ defmodule TennisScorer.Game do
 
   def reset_scores(game), do: %{game | score_1: 0, score_2: 0}
 
-  def display_score(%{score_1: score_1, score_2: score_2, name_1: name}) when score_1 > 3 and score_1 - score_2 > 1,
-    do: "game #{name}"
-
-  def display_score(%{score_1: score_1, score_2: score_2, name_2: name}) when score_2 > 3 and score_2 - score_1 > 1,
-    do: "game #{name}"
-
-  def display_score(%{score_1: score, score_2: score}) when score > 3, do: "deuce"
-
-  def display_score(%{score_1: score, name_1: name}) when score > 3, do: "advantage #{name}"
-  def display_score(%{score_2: score, name_2: name}) when score > 3, do: "advantage #{name}"
-  def display_score(%{score_1: score, score_2: score}), do: "#{label(score)} all"
-  def display_score(%{score_1: score_1, score_2: score_2}), do: "#{label(score_1)} #{label(score_2)}"
+  def display_score(game) do
+    cond do
+      game.score_1 > 3 and game.score_1 > game.score_2 + 1 -> "game #{game.name_1}"
+      game.score_2 > 3 and game.score_2 > game.score_1 + 1 -> "game #{game.name_2}"
+      game.score_1 == game.score_2 and game.score_1 > 3 -> "deuce"
+      game.score_1 > 3 -> "advantage #{game.name_1}"
+      game.score_2 > 3 -> "advantage #{game.name_2}"
+      game.score_1 == game.score_2 -> "#{label(game.score_1)} all"
+      true -> "#{label(game.score_1)} #{label(game.score_2)}"
+    end
+  end
 
   defp label(0), do: "love"
   defp label(1), do: "fifteen"
