@@ -39,14 +39,15 @@ defmodule TennisScorer.GameTest do
           {2, 2, "thirty all"},
           {3, 3, "forty all"},
           {4, 4, "deuce"},
-          {5, 5, "deuce"}
+          {5, 5, "deuce"},
+          {4, 3, "advantage Alice"}
         ] do
       @score_1 score_1
       @score_2 score_2
       @display display
 
       test "returns ‘#{@display}’ for #{@score_1} – #{@score_2}" do
-        assert Game.display_score(%Game{score_1: @score_1, score_2: @score_2}) == @display
+        assert Game.display_score(%Game{name_1: "Alice", name_2: "Bob", score_1: @score_1, score_2: @score_2}) == @display
       end
     end
   end
