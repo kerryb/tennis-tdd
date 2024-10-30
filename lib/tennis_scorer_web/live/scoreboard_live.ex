@@ -3,12 +3,13 @@ defmodule TennisScorerWeb.ScoreboardLive do
   use TennisScorerWeb, :live_view
 
   alias Phoenix.LiveView
+  alias TennisScorer.Game
 
   @impl LiveView
   def mount(_params, _session, socket) do
     {:ok,
      assign(socket,
-       game: %{name_1: "Player one", name_2: "Player two", score_1: 0, score_2: 0},
+       game: %Game{name_1: "Player one", name_2: "Player two", score_1: 0, score_2: 0},
        edit_player_1?: false,
        edit_player_2?: false
      )}
