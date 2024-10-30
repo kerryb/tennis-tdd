@@ -28,4 +28,8 @@ defmodule TennisScorer.Game do
   defp label(1), do: "fifteen"
   defp label(2), do: "thirty"
   defp label(3), do: "forty"
+
+  def over?(game) do
+    (game.score_1 > 3 and game.score_1 > game.score_2 + 1) or (game.score_2 > 3 and game.score_2 > game.score_1 + 1)
+  end
 end

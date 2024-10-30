@@ -56,4 +56,26 @@ defmodule TennisScorer.GameTest do
       end
     end
   end
+
+  describe "TennisScorer.Game.over?/1" do
+    test "is false when no player has reached 4 points" do
+      refute Game.over?(%Game{score_1: 0, score_2: 3})
+    end
+
+    test "is false at deuce" do
+      refute Game.over?(%Game{score_1: 4, score_2: 4})
+    end
+
+    test "is false at advantage for player 1" do
+      refute Game.over?(%Game{score_1: 5, score_2: 4})
+    end
+
+    test "is false at advantage for player 2" do
+      refute Game.over?(%Game{score_1: 4, score_2: 5})
+    end
+
+    test "is true at game for player 1" do
+      assert Game.over?(%Game{score_1: 5, score_2: 3})
+    end
+  end
 end

@@ -20,11 +20,11 @@
           <% end %>
         </span>
         <form>
-        <.button type="button" id="point-to-player-1" phx-click="point-to-player-1">
+          <.button type="button" id="point-to-player-1" disabled={Game.over?(@game)} phx-click="point-to-player-1">
           Score
         </.button>
         <.button type="button" id="reset-scores" phx-click="reset-scores">Reset</.button>
-        <.button type="button" id="point-to-player-2" phx-click="point-to-player-2">
+        <.button type="button" id="point-to-player-2" disabled={Game.over?(@game)} phx-click="point-to-player-2">
           Score
         </.button>
         </form>
