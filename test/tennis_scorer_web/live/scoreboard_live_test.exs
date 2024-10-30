@@ -23,6 +23,16 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
       assert_score(view, "fifteen all")
     end
 
+    test "disabled the scoring buttons once the game is one", %{conn: conn} do
+      {:ok, view, _html} = live(conn, "/")
+      award_point(view, "player-1")
+      award_point(view, "player-1")
+      award_point(view, "player-1")
+      award_point(view, "player-1")
+      assert_score_button_disabled(view, "player-1")
+      assert_score_button_disabled(view, "player-2")
+    end
+
     test "allows the scores to be reset", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/")
       award_point(view, "player-1")
@@ -51,5 +61,9 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
 
   defp assert_score(view, score) do
     assert view |> element("#score", score) |> has_element?()
+  end
+
+  defp assert_score_button_disabled(view, player) do
+    assert view |> element("#point-to-#{player}[disabled]") |> has_element?()
   end
 end
