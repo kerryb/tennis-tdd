@@ -35,7 +35,8 @@ defmodule TennisScorer.GameTest do
           {0, 0, "love all"},
           {1, 0, "fifteen love"},
           {0, 1, "love fifteen"},
-          {1, 1, "fifteen all"}
+          {1, 1, "fifteen all"},
+          {2, 2, "thirty all"}
         ] do
       @score_1 score_1
       @score_2 score_2
