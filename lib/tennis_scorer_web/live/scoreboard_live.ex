@@ -9,7 +9,7 @@ defmodule TennisScorerWeb.ScoreboardLive do
   def mount(_params, _session, socket) do
     {:ok,
      assign(socket,
-       game: %Game{name_1: "Player one", name_2: "Player two", score_1: 0, score_2: 0},
+       game: Game.new("Player one", "Player two"),
        edit_player_1?: false,
        edit_player_2?: false
      )}
