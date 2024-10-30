@@ -11,4 +11,6 @@ defmodule TennisScorer.Game do
   def award_point_to_player_2(game), do: Map.update!(game, :score_2, &(&1 + 1))
 
   def reset_scores(game), do: %{game | score_1: 0, score_2: 0}
+
+  def display_score(_game), do: "love all"
 end

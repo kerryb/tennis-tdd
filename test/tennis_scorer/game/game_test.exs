@@ -25,8 +25,14 @@ defmodule TennisScorer.GameTest do
 
   describe "TennisScorer.Game.reset_scores/1" do
     test "resets both player 2’s scores to zero" do
-      game = "Alice" |> Game.new("Bob") |> Game.award_point_to_player_1() |> Game.award_point_to_player_2()
+      game = %Game{score_1: 0, score_2: 0}
       assert %{score_1: 0, score_2: 0} = Game.reset_scores(game)
+    end
+  end
+
+  describe "TennisScorer.Game.display_score/1" do
+    test "returns ‘love all’ for 0 – 0" do
+      assert Game.display_score(%Game{score_1: 0, score_2: 0}) == "love all"
     end
   end
 end
