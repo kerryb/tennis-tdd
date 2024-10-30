@@ -14,8 +14,8 @@ defmodule TennisScorer.Game do
 
   def display_score(game) do
     cond do
-      game.score_1 > 3 and game.score_1 > game.score_2 + 1 -> "game #{game.name_1}"
-      game.score_2 > 3 and game.score_2 > game.score_1 + 1 -> "game #{game.name_2}"
+      player_1_win?(game) -> "game #{game.name_1}"
+      player_2_win?(game) -> "game #{game.name_2}"
       game.score_1 == game.score_2 and game.score_1 > 3 -> "deuce"
       game.score_1 > 3 -> "advantage #{game.name_1}"
       game.score_2 > 3 -> "advantage #{game.name_2}"
@@ -29,7 +29,8 @@ defmodule TennisScorer.Game do
   defp label(2), do: "thirty"
   defp label(3), do: "forty"
 
-  def over?(game) do
-    (game.score_1 > 3 and game.score_1 > game.score_2 + 1) or (game.score_2 > 3 and game.score_2 > game.score_1 + 1)
-  end
+  def over?(game), do: player_1_win?(game) or player_2_win?(game)
+
+  defp player_1_win?(game), do: game.score_1 > 3 and game.score_1 > game.score_2 + 1
+  defp player_2_win?(game), do: game.score_2 > 3 and game.score_2 > game.score_1 + 1
 end
