@@ -14,8 +14,6 @@ defmodule TennisScorer.Game do
 
   def display_score(%{score_1: score, score_2: score}), do: "#{label(score)} all"
   def display_score(%{score_1: score_1, score_2: score_2}), do: "#{label(score_1)} #{label(score_2)}"
-  def display_score(%{score_1: 1, score_2: 0}), do: "fifteen love"
-  def display_score(%{score_1: 0, score_2: 1}), do: "love fifteen"
 
   defp label(0), do: "love"
   defp label(1), do: "fifteen"
