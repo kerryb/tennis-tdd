@@ -1,7 +1,5 @@
 defmodule TennisScorerWeb.Telemetry do
-  @moduledoc false
   use Supervisor
-
   import Telemetry.Metrics
 
   def start_link(arg) do
@@ -45,6 +43,7 @@ defmodule TennisScorerWeb.Telemetry do
       summary("phoenix.socket_connected.duration",
         unit: {:native, :millisecond}
       ),
+      sum("phoenix.socket_drain.count"),
       summary("phoenix.channel_joined.duration",
         unit: {:native, :millisecond}
       ),

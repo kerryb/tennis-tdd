@@ -20,15 +20,14 @@ defmodule TennisScorerWeb.ConnCase do
   using do
     quote do
       # The default endpoint for testing
-      use TennisScorerWeb, :verified_routes
+      @endpoint TennisScorerWeb.Endpoint
 
-      import Phoenix.ConnTest
+      use TennisScorerWeb, :verified_routes
 
       # Import conveniences for testing with connections
       import Plug.Conn
+      import Phoenix.ConnTest
       import TennisScorerWeb.ConnCase
-
-      @endpoint TennisScorerWeb.Endpoint
     end
   end
 

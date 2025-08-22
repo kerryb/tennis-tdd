@@ -4,17 +4,15 @@ import Config
 # you can enable the server option below.
 config :tennis_scorer, TennisScorerWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "mzHvkFuyTPNRLmjp0GCwAwp2jRknXqrIpQc0H/2o8DCLwY7IWnonGCt4zbEnHicF",
+  secret_key_base: "RYoQbzlKuGAN31vHvKf0LjYNxg45jp+UNysv8v45hxZoVEOgzar3eECYd4lAdgug",
   server: false
-
-# In test we don't send emails.
-config :tennis_scorer, TennisScorer.Mailer, adapter: Swoosh.Adapters.Test
-
-# Disable swoosh api client as it is only required for production adapters.
-config :swoosh, :api_client, false
 
 # Print only warnings and errors during test
 config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Enable helpful, but potentially expensive runtime checks
+config :phoenix_live_view,
+  enable_expensive_runtime_checks: true

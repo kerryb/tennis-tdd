@@ -24,9 +24,9 @@ defmodule TennisScorerWeb do
       use Phoenix.Router, helpers: false
 
       # Import common connection and controller functions to use in pipelines
+      import Plug.Conn
       import Phoenix.Controller
       import Phoenix.LiveView.Router
-      import Plug.Conn
     end
   end
 
@@ -38,12 +38,11 @@ defmodule TennisScorerWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: TennisScorerWeb.Layouts]
+      use Phoenix.Controller, formats: [:html, :json]
+
+      use Gettext, backend: TennisScorerWeb.Gettext
 
       import Plug.Conn
-      use Gettext, backend: TennisScorerWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -51,8 +50,7 @@ defmodule TennisScorerWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView,
-        layout: {TennisScorerWeb.Layouts, :app}
+      use Phoenix.LiveView
 
       unquote(html_helpers())
     end
@@ -81,14 +79,17 @@ defmodule TennisScorerWeb do
 
   defp html_helpers do
     quote do
-      # HTML escaping functionality
-      import Phoenix.HTML
-      # Core UI components and translation
-      import TennisScorerWeb.CoreComponents
+      # Translation
       use Gettext, backend: TennisScorerWeb.Gettext
 
-      # Shortcut for generating JS commands
+      # HTML escaping functionality
+      import Phoenix.HTML
+      # Core UI components
+      import TennisScorerWeb.CoreComponents
+
+      # Common modules used in templates
       alias Phoenix.LiveView.JS
+      alias TennisScorerWeb.Layouts
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
@@ -105,7 +106,7 @@ defmodule TennisScorerWeb do
   end
 
   @doc """
-  When used, dispatch to the appropriate controller/view/etc.
+  When used, dispatch to the appropriate controller/live_view/etc.
   """
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])

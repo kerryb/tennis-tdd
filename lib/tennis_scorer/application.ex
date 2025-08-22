@@ -11,8 +11,6 @@ defmodule TennisScorer.Application do
       TennisScorerWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:tennis_scorer, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: TennisScorer.PubSub},
-      # Start the Finch HTTP client for sending emails
-      {Finch, name: TennisScorer.Finch},
       # Start a worker by calling: TennisScorer.Worker.start_link(arg)
       # {TennisScorer.Worker, arg},
       # Start to serve requests, typically the last entry
