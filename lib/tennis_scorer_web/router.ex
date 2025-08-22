@@ -17,7 +17,7 @@ defmodule TennisScorerWeb.Router do
   scope "/", TennisScorerWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", ScoreboardLive
   end
 
   # Other scopes may use custom stacks.
