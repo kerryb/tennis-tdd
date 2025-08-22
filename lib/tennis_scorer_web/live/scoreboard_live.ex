@@ -48,4 +48,30 @@ defmodule TennisScorerWeb.ScoreboardLive do
   defp award_point_to_player_2(game), do: Map.update!(game, :score_2, &(&1 + 1))
 
   defp reset_scores(game), do: %{game | score_1: 0, score_2: 0}
+
+  attr :input_id, :string, required: true
+  attr :value, :string, required: true
+  attr :rest, :global
+
+  defp edit_name_form(assigns) do
+    ~H"""
+    <form {@rest}>
+      <.input
+        id={@input_id}
+        name="name"
+        value={@value}
+        class="pt-0 text-xl max-w-40 border px-2"
+        phx-hook=".AutoFocus"
+      />
+    </form>
+    <script :type={Phoenix.LiveView.ColocatedHook} name=".AutoFocus">
+      export default {
+        mounted() {
+          this.el.focus()
+          this.el.select()
+        }
+      }
+    </script>
+    """
+  end
 end

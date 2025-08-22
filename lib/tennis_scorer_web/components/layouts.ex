@@ -35,10 +35,10 @@ defmodule TennisScorerWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <main class="bg-green-950 antialiased px-4 py-20 sm:px-6 lg:px-8 text-yellow-300">
+    <main class="px-4 py-20 sm:px-6 lg:px-8 text-yellow-300">
       <div class="mx-auto max-w-2xl">
         <.flash_group flash={@flash} />
-        {@inner_content}
+        {render_slot(@inner_block)}
       </div>
     </main>
     """
