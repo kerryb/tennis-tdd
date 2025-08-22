@@ -13,10 +13,10 @@
             <.edit_name_form
               input_id="player-1-name"
               phx-submit="submit-player-1"
-              value={@game.name_1}
+              value={@name_1}
             />
           <% else %>
-            {@game.name_1}
+            {@name_1}
             <a id="edit-player-1" phx-click="edit-player-1">
               <span class="text-green-600"><.icon name="hero-pencil-square" /></span>
             </a>
@@ -53,19 +53,19 @@
             <.edit_name_form
               input_id="player-2-name"
               phx-submit="submit-player-2"
-              value={@game.name_2}
+              value={@name_2}
             />
           <% else %>
             <a id="edit-player-2" phx-click="edit-player-2">
               <span class="text-green-600"><.icon name="hero-pencil-square" /></span>
             </a>
-            {@game.name_2}
+            {@name_2}
           <% end %>
         </span>
       </div>
     </div>
     <div class="py-3 px rounded-b-lg bg-black text-4xl font-bold" id="score">
-      {@game.score_1} – {@game.score_2}
+      {@score_1} – {@score_2}
     </div>
   </div>
 </Layouts.app>

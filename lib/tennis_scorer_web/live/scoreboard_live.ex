@@ -8,7 +8,10 @@ defmodule TennisScorerWeb.ScoreboardLive do
   def mount(_params, _session, socket) do
     {:ok,
      assign(socket,
-       game: %{name_1: "Player one", name_2: "Player two", score_1: 0, score_2: 0},
+       name_1: "Player one",
+       name_2: "Player two",
+       score_1: 0,
+       score_2: 0,
        edit_player_1?: false,
        edit_player_2?: false
      )}
@@ -24,30 +27,24 @@ defmodule TennisScorerWeb.ScoreboardLive do
   end
 
   def handle_event("point-to-player-1", _unsigned_params, socket) do
-    {:noreply, update(socket, :game, &award_point_to_player_1/1)}
+    {:noreply, update(socket, :score_1, &(&1 + 1))}
   end
 
   def handle_event("point-to-player-2", _unsigned_params, socket) do
-    {:noreply, update(socket, :game, &award_point_to_player_2/1)}
+    {:noreply, update(socket, :score_2, &(&1 + 1))}
   end
 
   def handle_event("reset-scores", _unsigned_params, socket) do
-    {:noreply, update(socket, :game, &reset_scores/1)}
+    {:noreply, assign(socket, score_1: 0, score_2: 0)}
   end
 
   def handle_event("submit-player-1", %{"name" => name}, socket) do
-    {:noreply, socket |> update(:game, &%{&1 | name_1: name}) |> assign(edit_player_1?: false)}
+    {:noreply, assign(socket, name_1: name, edit_player_1?: false)}
   end
 
   def handle_event("submit-player-2", %{"name" => name}, socket) do
-    {:noreply, socket |> update(:game, &%{&1 | name_2: name}) |> assign(edit_player_2?: false)}
+    {:noreply, assign(socket, name_2: name, edit_player_2?: false)}
   end
-
-  defp award_point_to_player_1(game), do: Map.update!(game, :score_1, &(&1 + 1))
-
-  defp award_point_to_player_2(game), do: Map.update!(game, :score_2, &(&1 + 1))
-
-  defp reset_scores(game), do: %{game | score_1: 0, score_2: 0}
 
   attr :input_id, :string, required: true
   attr :value, :string, required: true
