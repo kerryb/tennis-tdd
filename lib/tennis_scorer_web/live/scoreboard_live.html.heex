@@ -1,63 +1,65 @@
-<div class="text-center">
-  <h1 class="mt-0 text-2xl py-2 rounded-t-lg bg-purple-700 text-white font-bold">
-    Tennis Scorer
-  </h1>
-  <div class="pb-2 bg-green-700">
-    <div class="flex justify-center space-x-4 pt-4 pb-2">
-      <span
-        id="player-1"
-        class="text-2xl flex-1 text-left pl-4 leading-normal align-middle"
-      >
-        <%= if @edit_player_1? do %>
-          <form phx-submit="submit-player-1">
-            <.input
-              id="player-1-name"
-              name="name"
-              value={@game.name_1}
-              class="pt-0"
-              phx-hook="AutoFocus"
-            />
-          </form>
-        <% else %>
-          {@game.name_1}
-          <a id="edit-player-1" phx-click="edit-player-1">
-            <span class="text-green-600"><.icon name="hero-pencil-square" /></span>
-          </a>
-        <% end %>
-      </span>
-      <form>
-        <.button type="button" id="point-to-player-1" phx-click="point-to-player-1">
-          Score
-        </.button>
-        <.button type="button" id="reset-scores" phx-click="reset-scores">Reset</.button>
-        <.button type="button" id="point-to-player-2" phx-click="point-to-player-2">
-          Score
-        </.button>
-      </form>
-      <span
-        id="player-2"
-        class="text-2xl flex-1 text-right pr-4 leading-normal align-middle"
-      >
-        <%= if @edit_player_2? do %>
-          <form phx-submit="submit-player-2">
-            <.input
-              id="player-2-name"
-              name="name"
-              value={@game.name_2}
-              class="pt-0"
-              phx-hook="AutoFocus"
-            />
-          </form>
-        <% else %>
-          <a id="edit-player-2" phx-click="edit-player-2">
-            <span class="text-green-600"><.icon name="hero-pencil-square" /></span>
-          </a>
-          {@game.name_2}
-        <% end %>
-      </span>
+<Layouts.app flash={@flash}>
+  <div class="text-center">
+    <h1 class="mt-0 text-2xl py-2 rounded-t-lg bg-purple-700 text-white font-bold">
+      Tennis Scorer
+    </h1>
+    <div class="pb-2 bg-green-700">
+      <div class="flex justify-center space-x-4 pt-4 pb-2">
+        <span
+          id="player-1"
+          class="text-2xl flex-1 text-left pl-4 leading-normal align-middle"
+        >
+          <%= if @edit_player_1? do %>
+            <form phx-submit="submit-player-1">
+              <.input
+                id="player-1-name"
+                name="name"
+                value={@game.name_1}
+                class="pt-0"
+                phx-hook="AutoFocus"
+              />
+            </form>
+          <% else %>
+            {@game.name_1}
+            <a id="edit-player-1" phx-click="edit-player-1">
+              <span class="text-green-600"><.icon name="hero-pencil-square" /></span>
+            </a>
+          <% end %>
+        </span>
+        <form>
+          <.button type="button" id="point-to-player-1" phx-click="point-to-player-1">
+            Score
+          </.button>
+          <.button type="button" id="reset-scores" phx-click="reset-scores">Reset</.button>
+          <.button type="button" id="point-to-player-2" phx-click="point-to-player-2">
+            Score
+          </.button>
+        </form>
+        <span
+          id="player-2"
+          class="text-2xl flex-1 text-right pr-4 leading-normal align-middle"
+        >
+          <%= if @edit_player_2? do %>
+            <form phx-submit="submit-player-2">
+              <.input
+                id="player-2-name"
+                name="name"
+                value={@game.name_2}
+                class="pt-0"
+                phx-hook="AutoFocus"
+              />
+            </form>
+          <% else %>
+            <a id="edit-player-2" phx-click="edit-player-2">
+              <span class="text-green-600"><.icon name="hero-pencil-square" /></span>
+            </a>
+            {@game.name_2}
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <div class="py-3 px rounded-b-lg bg-black text-4xl font-bold" id="score">
+      {@game.score_1} – {@game.score_2}
     </div>
   </div>
-  <div class="py-3 px rounded-b-lg bg-black text-4xl font-bold" id="score">
-    {@game.score_1} – {@game.score_2}
-  </div>
-</div>
+</Layouts.app>
