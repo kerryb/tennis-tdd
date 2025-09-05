@@ -46,10 +46,14 @@ defmodule TennisScorerWeb.ScoreboardLiveTest do
   end
 
   defp assert_name(view, player, name) do
-    assert has_element?(view, "##{player}", name)
+    assert view |> element("##{player}") |> render_text() == name
   end
 
   defp assert_score(view, score) do
-    assert view |> element("#score", score) |> has_element?()
+    assert view |> element("#score") |> render_text() == score
+  end
+
+  defp render_text(element) do
+    element |> render() |> LazyHTML.from_fragment() |> LazyHTML.text() |> String.trim()
   end
 end
