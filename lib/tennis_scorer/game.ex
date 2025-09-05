@@ -23,9 +23,16 @@ defmodule TennisScorer.Game do
 
   def score(game) do
     if game.score_1 > 0 do
-      "Fifteen love"
+      "#{score_word(game.score_1)} love"
     else
       "Love all"
+    end
+  end
+
+  defp score_word(score) do
+    case score do
+      1 -> "Fifteen"
+      2 -> "Thirty"
     end
   end
 end
