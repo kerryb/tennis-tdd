@@ -20,4 +20,8 @@ defmodule TennisScorer.Game do
   def set_player_2_name(game, name) do
     %{game | name_2: name}
   end
+
+  def score(game) do
+    "#{game.score_1} – #{game.score_2}"
+  end
 end
