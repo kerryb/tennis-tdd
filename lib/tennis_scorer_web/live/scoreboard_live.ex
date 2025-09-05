@@ -3,12 +3,13 @@ defmodule TennisScorerWeb.ScoreboardLive do
   use TennisScorerWeb, :live_view
 
   alias Phoenix.LiveView
+  alias TennisScorer.Game
 
   @impl LiveView
   def mount(_params, _session, socket) do
     {:ok,
      assign(socket,
-       game: %TennisScorer.Game{},
+       game: %Game{},
        edit_player_1?: false,
        edit_player_2?: false
      )}
@@ -24,11 +25,11 @@ defmodule TennisScorerWeb.ScoreboardLive do
   end
 
   def handle_event("point-to-player-1", _unsigned_params, socket) do
-    {:noreply, update(socket, :game, fn game -> increment_score(game, :score_1) end)}
+    {:noreply, update(socket, :game, fn game -> Game.score_player_1(game) end)}
   end
 
   def handle_event("point-to-player-2", _unsigned_params, socket) do
-    {:noreply, update(socket, :game, fn game -> increment_score(game, :score_2) end)}
+    {:noreply, update(socket, :game, fn game -> Game.score_player_2(game) end)}
   end
 
   def handle_event("reset-scores", _unsigned_params, socket) do
