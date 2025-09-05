@@ -33,6 +33,7 @@ defmodule TennisScorer.Game do
     case score do
       1 -> "Fifteen"
       2 -> "Thirty"
+      3 -> "Forty"
     end
   end
 end
