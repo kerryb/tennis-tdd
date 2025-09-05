@@ -22,6 +22,10 @@ defmodule TennisScorer.Game do
   end
 
   def score(game) do
-    "Love all"
+    if game.score_1 > 0 do
+      "Fifteen love"
+    else
+      "Love all"
+    end
   end
 end
