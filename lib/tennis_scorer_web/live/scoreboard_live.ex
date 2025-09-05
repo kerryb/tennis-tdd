@@ -33,11 +33,17 @@ defmodule TennisScorerWeb.ScoreboardLive do
   end
 
   def handle_event("point-to-player-1", _unsigned_params, socket) do
-    {:noreply, update(socket, :score_1, fn score -> score + 1 end)}
+    {:noreply,
+     socket
+     |> update(:score_1, fn score -> score + 1 end)
+     |> update(:game, fn game -> Map.update!(game, :score_1, fn score -> score + 1 end) end)}
   end
 
   def handle_event("point-to-player-2", _unsigned_params, socket) do
-    {:noreply, update(socket, :score_2, fn score -> score + 1 end)}
+    {:noreply,
+     socket
+     |> update(:score_2, fn score -> score + 1 end)
+     |> update(:game, fn game -> Map.update!(game, :score_2, fn score -> score + 1 end) end)}
   end
 
   def handle_event("reset-scores", _unsigned_params, socket) do
