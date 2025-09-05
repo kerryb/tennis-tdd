@@ -44,10 +44,6 @@ defmodule TennisScorerWeb.ScoreboardLive do
     {:noreply, socket |> assign(edit_player_2?: false) |> update(:game, fn game -> %{game | name_2: name} end)}
   end
 
-  defp increment_score(game, player) do
-    Map.update!(game, player, fn score -> score + 1 end)
-  end
-
   attr :input_id, :string, required: true
   attr :value, :string, required: true
   attr :rest, :global
