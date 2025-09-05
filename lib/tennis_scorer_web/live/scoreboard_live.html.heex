@@ -13,10 +13,10 @@
             <.edit_name_form
               input_id="player-1-name"
               phx-submit="submit-player-1"
-              value={@name_1}
+              value={@game.name_1}
             />
           <% else %>
-            {@name_1}
+            {@game.name_1}
             <a id="edit-player-1" phx-click="edit-player-1">
               <span class="text-green-600"><.icon name="hero-pencil-square" /></span>
             </a>
@@ -53,13 +53,13 @@
             <.edit_name_form
               input_id="player-2-name"
               phx-submit="submit-player-2"
-              value={@name_2}
+              value={@game.name_2}
             />
           <% else %>
             <a id="edit-player-2" phx-click="edit-player-2">
               <span class="text-green-600"><.icon name="hero-pencil-square" /></span>
             </a>
-            {@name_2}
+            {@game.name_2}
           <% end %>
         </span>
       </div>
