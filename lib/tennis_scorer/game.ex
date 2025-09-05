@@ -1,4 +1,7 @@
 defmodule TennisScorer.Game do
   @moduledoc false
-  defstruct [:name_1, :name_2, :score_1, :score_2]
+  defstruct name_1: "Player one",
+            name_2: "Player two",
+            score_1: 0,
+            score_2: 0
 end
