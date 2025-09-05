@@ -12,4 +12,12 @@ defmodule TennisScorer.Game do
   def score_player_2(game) do
     Map.update!(game, :score_2, fn score -> score + 1 end)
   end
+
+  def set_player_1_name(game, name) do
+    %{game | name_1: name}
+  end
+
+  def set_player_2_name(game, name) do
+    %{game | name_2: name}
+  end
 end

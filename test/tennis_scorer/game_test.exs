@@ -22,4 +22,18 @@ defmodule TennisScorer.GameTest do
       assert game.score_2 == 2
     end
   end
+
+  describe "TennisScorer.Game.set_player_1_name/2" do
+    test "sets player one’s name" do
+      game = Game.set_player_1_name(%Game{}, "Alice")
+      assert game.name_1 == "Alice"
+    end
+  end
+
+  describe "TennisScorer.Game.set_player_2_name/2" do
+    test "sets player two’s name" do
+      game = Game.set_player_2_name(%Game{}, "Bob")
+      assert game.name_2 == "Bob"
+    end
+  end
 end
