@@ -47,7 +47,7 @@ defmodule TennisScorerWeb.ScoreboardLive do
   end
 
   def handle_event("reset-scores", _unsigned_params, socket) do
-    {:noreply, assign(socket, score_1: 0, score_2: 0)}
+    {:noreply, socket |> assign(score_1: 0, score_2: 0) |> update(:game, fn game -> %{game | score_1: 0, score_2: 0} end)}
   end
 
   def handle_event("submit-player-1", %{"name" => name}, socket) do
