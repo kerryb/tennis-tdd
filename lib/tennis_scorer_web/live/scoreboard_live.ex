@@ -16,8 +16,6 @@ defmodule TennisScorerWeb.ScoreboardLive do
        },
        name_1: "Player one",
        name_2: "Player two",
-       score_1: 0,
-       score_2: 0,
        edit_player_1?: false,
        edit_player_2?: false
      )}
@@ -33,21 +31,15 @@ defmodule TennisScorerWeb.ScoreboardLive do
   end
 
   def handle_event("point-to-player-1", _unsigned_params, socket) do
-    {:noreply,
-     socket
-     |> update(:score_1, fn score -> score + 1 end)
-     |> update(:game, fn game -> Map.update!(game, :score_1, fn score -> score + 1 end) end)}
+    {:noreply, update(socket, :game, fn game -> Map.update!(game, :score_1, fn score -> score + 1 end) end)}
   end
 
   def handle_event("point-to-player-2", _unsigned_params, socket) do
-    {:noreply,
-     socket
-     |> update(:score_2, fn score -> score + 1 end)
-     |> update(:game, fn game -> Map.update!(game, :score_2, fn score -> score + 1 end) end)}
+    {:noreply, update(socket, :game, fn game -> Map.update!(game, :score_2, fn score -> score + 1 end) end)}
   end
 
   def handle_event("reset-scores", _unsigned_params, socket) do
-    {:noreply, socket |> assign(score_1: 0, score_2: 0) |> update(:game, fn game -> %{game | score_1: 0, score_2: 0} end)}
+    {:noreply, update(socket, :game, fn game -> %{game | score_1: 0, score_2: 0} end)}
   end
 
   def handle_event("submit-player-1", %{"name" => name}, socket) do
