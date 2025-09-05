@@ -41,5 +41,9 @@ defmodule TennisScorer.GameTest do
     test "returns “Love all” for 0–0" do
       assert Game.score(%Game{score_1: 0, score_2: 0}) == "Love all"
     end
+
+    test "returns “Fifteen love” for 1–0" do
+      assert Game.score(%Game{score_1: 1, score_2: 0}) == "Fifteen love"
+    end
   end
 end
