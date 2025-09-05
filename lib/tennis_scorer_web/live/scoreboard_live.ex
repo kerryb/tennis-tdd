@@ -43,11 +43,13 @@ defmodule TennisScorerWeb.ScoreboardLive do
   end
 
   def handle_event("submit-player-1", %{"name" => name}, socket) do
-    {:noreply, assign(socket, name_1: name, edit_player_1?: false)}
+    {:noreply,
+     socket |> assign(name_1: name, edit_player_1?: false) |> update(:game, fn game -> %{game | name_1: name} end)}
   end
 
   def handle_event("submit-player-2", %{"name" => name}, socket) do
-    {:noreply, assign(socket, name_2: name, edit_player_2?: false)}
+    {:noreply,
+     socket |> assign(name_2: name, edit_player_2?: false) |> update(:game, fn game -> %{game | name_2: name} end)}
   end
 
   defp increment_score(game, player) do
