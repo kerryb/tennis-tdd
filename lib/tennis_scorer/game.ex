@@ -23,8 +23,11 @@ defmodule TennisScorer.Game do
 
   def score(game) do
     cond do
-      game.score_1 > 3 ->
+      game.score_1 > 3 and game.score_1 > game.score_2 ->
         "Advantage #{game.name_1}"
+
+      game.score_2 > 3 ->
+        "Advantage #{game.name_2}"
 
       game.score_1 == game.score_2 ->
         "#{String.capitalize(score_word(game.score_1))} all"
