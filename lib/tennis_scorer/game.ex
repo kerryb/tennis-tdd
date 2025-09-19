@@ -22,11 +22,19 @@ defmodule TennisScorer.Game do
   end
 
   def score(game) do
-    if game.score_1 > 0 do
-      "#{score_word(game.score_1)} love"
-    else
-      "Love all"
-    end
+    cond_result =
+      cond do
+        game.score_1 > 0 ->
+          "#{score_word(game.score_1)} love"
+
+        game.score_2 > 0 ->
+          "love #{score_word(game.score_2)}"
+
+        true ->
+          "love all"
+      end
+
+    String.capitalize(cond_result)
   end
 
   defp score_word(score) do
