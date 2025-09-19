@@ -23,6 +23,9 @@ defmodule TennisScorer.Game do
 
   def score(game) do
     cond do
+      game.score_1 > 3 and game.score_1 > game.score_2 + 1 ->
+        "Game #{game.name_1}"
+
       game.score_1 > 3 and game.score_1 > game.score_2 ->
         "Advantage #{game.name_1}"
 
