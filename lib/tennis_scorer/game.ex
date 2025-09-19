@@ -29,6 +29,9 @@ defmodule TennisScorer.Game do
       game.score_2 > 3 and game.score_2 > game.score_1 + 1 ->
         "Game #{game.name_2}"
 
+      game.score_1 > 3 and game.score_1 == game.score_2 ->
+        "Deuce"
+
       game.score_1 > 3 and game.score_1 > game.score_2 ->
         "Advantage #{game.name_1}"
 
