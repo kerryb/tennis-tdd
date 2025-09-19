@@ -22,14 +22,16 @@ defmodule TennisScorer.Game do
   end
 
   def score(game) do
-    cond_result =
-      if game.score_1 == game.score_2 do
-        "#{score_word(game.score_1)} all"
-      else
-        "#{score_word(game.score_1)} #{score_word(game.score_2)}"
-      end
+    cond do
+      game.score_1 == 4 ->
+        "Advantage #{game.name_1}"
 
-    String.capitalize(cond_result)
+      game.score_1 == game.score_2 ->
+        "#{String.capitalize(score_word(game.score_1))} all"
+
+      true ->
+        "#{String.capitalize(score_word(game.score_1))} #{score_word(game.score_2)}"
+    end
   end
 
   defp score_word(score) do

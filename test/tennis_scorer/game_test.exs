@@ -57,5 +57,9 @@ defmodule TennisScorer.GameTest do
         assert Game.score(%Game{score_1: @score_1, score_2: @score_2}) == @expected
       end
     end
+
+    test "returns advantage when player 1 is up 4–3" do
+      assert Game.score(%Game{name_1: "Alice", score_1: 4, score_2: 3}) == "Advantage Alice"
+    end
   end
 end
