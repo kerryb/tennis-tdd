@@ -40,6 +40,9 @@ defmodule TennisScorer.GameTest do
   describe "TennisScorer.Game.score/1" do
     for {score_1, score_2, expected} <- [
           {0, 0, "Love all"},
+          {1, 1, "Fifteen all"},
+          {2, 2, "Thirty all"},
+          {3, 3, "Forty all"},
           {1, 0, "Fifteen love"},
           {2, 0, "Thirty love"},
           {3, 0, "Forty love"},
