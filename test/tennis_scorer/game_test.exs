@@ -81,5 +81,13 @@ defmodule TennisScorer.GameTest do
     test "returns game when player 1 is > 1 point up and over 3" do
       assert Game.score(%Game{name_1: "Alice", score_1: 6, score_2: 4}) == "Game Alice"
     end
+
+    test "returns game when player 2 has 4 and player 2 < 3" do
+      assert Game.score(%Game{name_2: "Bob", score_1: 2, score_2: 4}) == "Game Bob"
+    end
+
+    test "returns game when player 2 is > 1 point up and over 3" do
+      assert Game.score(%Game{name_2: "Bob", score_1: 4, score_2: 6}) == "Game Bob"
+    end
   end
 end
